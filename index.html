@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Benaiah Jewelry Architects — Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+    <header class="site-header" id="siteHeader" role="banner">
+      <div class="logo">
+        <a href="index.html"><img src="img/Benaiah Jewelry Architects 2.png" alt="Benaiah Jewelry"></a>
+      </div>
+
+      <div class="search" role="search" aria-label="product search">
+        <input id="siteSearch" type="search" placeholder="Search for jewelry, gemstones, or collections..." aria-label="Search products">
+        <button class="icon-btn" aria-label="Search button" id="btnSearch" title="Search">
+          <!-- search SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.35-4.35" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11" cy="11" r="6" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-actions" role="navigation" aria-label="user actions">
+        <button class="icon-btn" aria-label="Cart" id="cartBtn" title="Cart">
+          <!-- cart SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1" fill="#3f3f3f"/>
+            <circle cx="18" cy="20" r="1" fill="#3f3f3f"/>
+          </svg>
+        </button>
+
+        <button class="icon-btn" onclick="openLogin()" aria-label="Account" title="Account">
+          <!-- user SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="7" r="4" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+  <!-- NAV -->
+  <nav class="main-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="product.html">Store</a>
+    <a href="#services">Services</a>
+    <a href="Courses&Consultation.html">Courses & Consultation</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-left hero-left-card">
+      <div class="hero-slider" id="heroSlider" aria-live="polite">
+        <div class="slide active" data-index="0" role="group" aria-roledescription="slide" aria-label="Slide 1">
+          <img src="img/wiz.jpg" alt="Elegant model wearing jewelry">
+          <div class="hero-cta" role="region" aria-label="hero call to action">
+            <h1 id="hero-heading">Bright & Shiny — Timeless Jewelry</h1>
+            <p>Handcrafted pieces and custom design sessions. Discover new arrivals and signature collections.</p>
+            <div style="display:flex;gap:10px">
+              <button class="btn-primary" onclick="location.href='products.html'">Shop Now</button>
+              <button class="icon-btn" onclick="location.href='bookings.html'">Book a Class</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" data-index="1">
+          <img src="img/alex.jpg" alt="Pair of shiny earrings">
+          <div class="hero-cta">
+            <h1>Statement Earrings</h1>
+            <p>Curated selection of premium earrings — shop the collection.</p>
+            <div style="display:flex;gap:10px">
+              <button class="btn-primary" onclick="location.href='products.html'">Shop Earrings</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide" data-index="2">
+          <img src="img/king.jpg" alt="Bracelet on wrist">
+          <div class="hero-cta">
+            <h1>Workshops & Training</h1>
+            <p>Join our hands-on jewelry-making classes. Limited seats — reserve your spot.</p>
+            <div style="display:flex;gap:10px">
+              <button class="btn-primary" onclick="location.href='bookings.html'">Reserve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- slider controls -->
+        <div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px">
+          <button id="prevSlide" class="icon-btn" aria-label="Previous slide">◀</button>
+          <button id="nextSlide" class="icon-btn" aria-label="Next slide">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="hero-right" aria-hidden="false">
+      <div class="mini-card">
+        <img src="img/watch.jpg" alt="Ring set">
+        <div class="mini-label">New Arrivals</div>
+      </div>
+      <div class="mini-card">
+        <img src="img/clex.jpg" alt="Earrings">
+        <div class="mini-label">Limited Edition</div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- categories -->
+  <div class="categories" role="list" aria-label="shop categories">
+    <div class="category" role="listitem"><img src="img/ringspng.png" alt=""><p>Ring</p></div>
+    <div class="category" role="listitem"><img src="img/20.png" alt=""><p>Watch</p></div>
+    <div class="category" role="listitem"><img src="img/10.png" alt=""><p>Crown</p></div>
+    <div class="category" role="listitem"><img src="img/8.png" alt=""><p>Earrings</p></div>
+    <div class="category" role="listitem"><img src="img/braceletspng.png" alt=""><p>Necklace</p></div>
+    <div class="category" role="listitem"><img src="img/10.png" alt=""><p>Bracelet</p></div>
+  </div>
+
+  <!-- special offer -->
+  <section class="special" aria-label="special offer">
+    <div>
+      <div class="badge">-20% OFF</div>
+      <h3>Special Offer</h3>
+      <p class="muted">Minimalist single-layer leaf bracelet — elegant and delicate.</p>
+      <p style="margin-top:10px;font-weight:700"><del style="color:#c9b69a">298.000 $</del> <span style="margin-left:10px">200.000 $</span></p>
+    </div>
+
+    <div style="text-align:center">
+      <img src="img/18.png" alt="special product" class="hand" id="mainOfferImage">
+    </div>
+
+    <div>
+      <div class="timer" aria-label="offer countdown">
+        <div class="tcol"><span id="days">05</span><small class="muted">Days</small></div>
+        <div class="tcol"><span id="hours">07</span><small class="muted">Hours</small></div>
+        <div class="tcol"><span id="minutes">12</span><small class="muted">Minutes</small></div>
+        <div class="tcol"><span id="seconds">10</span><small class="muted">Seconds</small></div>
+      </div>
+      <p style="margin-top:12px;font-weight:700">Limited stock — free shipping on qualifying orders</p>
+    </div>
+
+    <div class="thumbs">
+      <img src="img/18.png" alt="thumb1" data-src="img/18.png">
+      <img src="img/16.png" alt="thumb2" data-src="img/16.png">
+      <img src="img/15.png" alt="thumb3" data-src="img/15.png">
+    </div>
+  </section>
+
+  <!-- latest products -->
+  <section class="section" aria-labelledby="latest-heading">
+    <div class="section-head">
+      <h2 id="latest-heading"><span style="color:var(--accent-deep);font-weight:800">Latest</span> products</h2>
+      <button class="viewall" onclick="location.href='products.html'">View all</button>
+    </div>
+
+    <div class="products" id="productGrid">
+      <!-- product cards -->
+      <article class="card" tabindex="0" aria-label="Single-layer circular bar bracelet">
+        <div class="imgwrap"><img src="img/1.png" alt=""></div>
+        <div class="title">Single-layer circular bar bracelet</div>
+        <div><span class="price">295.000 $</span> <span class="old">390.000 $</span></div>
+        <div class="badge">Sale</div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Ball dangle earrings model 647">
+        <div class="imgwrap"><img src="img/2.png" alt=""></div>
+        <div class="title">Ball dangle earrings, model 647</div>
+        <div><span class="price">295.000 $</span></div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Earrings model 647">
+        <div class="imgwrap"><img src="img/3.png" alt=""></div>
+        <div class="title">Ball dangle earrings, model 647</div>
+        <div><span class="price">295.000 $</span></div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Gemstone ring">
+        <div class="imgwrap"><img src="img/4.png" alt=""></div>
+        <div class="title">Gemstone ring</div>
+        <div><span class="price">295.000 $</span></div>
+        <div class="badge">New</div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Gold stack bracelet">
+        <div class="imgwrap"><img src="img/5.png" alt=""></div>
+        <div class="title">Gold stack bracelet</div>
+        <div><span class="price">295.000 $</span></div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Heart pendant necklace">
+        <div class="imgwrap"><img src="img/6.png" alt=""></div>
+        <div class="title">Heart pendant necklace</div>
+        <div><span class="price">295.000 $</span></div>
+        <div class="badge">Sale</div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Star charm necklace">
+        <div class="imgwrap"><img src="img/7.png" alt=""></div>
+        <div class="title">Star charm necklace</div>
+        <div><span class="price">295.000 $</span></div>
+      </article>
+
+      <article class="card" tabindex="0" aria-label="Pearl & gold ring">
+        <div class="imgwrap"><img src="img/8.png" alt=""></div>
+        <div class="title">Pearl & gold ring</div>
+        <div><span class="price">295.000 $</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- book a class teaser -->
+  <section class="book-teaser" aria-label="book a class">
+    <img src="img/14.png" alt="workshop">
+    <div class="txt">
+      <h3>Jewelry-making workshops</h3>
+      <p class="muted">Hands-on courses for beginners and professionals. Learn gem setting, soldering, and design techniques with our master jewelers.</p>
+      <p style="margin-top:10px"><button class="viewall" onclick="location.href='bookings.html'">Book a class</button></p>
+    </div>
+  </section>
+
+  <!-- testimonials -->
+  <section>
+    <h3 style="margin-bottom:12px">What our clients say</h3>
+    <div class="testimonials" aria-live="polite">
+      <div class="testimonial">
+        <p>"Beautiful craftsmanship and friendly instructors. Bought a custom ring and I'm thrilled."</p>
+        <div class="who">— Naomi, Lilongwe</div>
+      </div>
+
+      <div class="testimonial">
+        <p>"Great workshop — learned a lot in a single session. Highly recommend the beginner course."</p>
+        <div class="who">— Joseph, Blantyre</div>
+      </div>
+
+      <div class="testimonial">
+        <p>"Fast shipping and the pieces look even better in person. Excellent customer service."</p>
+        <div class="who">— Grace, Mzuzu</div>
+      </div>
+    </div>
+  </section>
+<!-- SERVICES SECTION (Premium + Real SVGs + Anchor) -->
+<section id="services" style="margin-top:60px">
+  <h2 style="font-size:28px;font-weight:800;color:var(--accent-deep);text-align:center;margin-bottom:10px">
+    Our Professional Services
+  </h2>
+  <p style="color:#6b574b;text-align:center;margin-bottom:35px;font-size:15px">
+    Expert craftsmanship, personalized consultations, and world-class jewelry design.
+  </p>
+
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px">
+
+    <!-- CARD 1: Jewelry Consultancy -->
+    <div style="background:white;padding:26px;border-radius:22px;
+        border:2px solid var(--accent-gold);box-shadow:0 12px 36px var(--shadow);transition:0.3s"
+        onmouseover="this.style.transform='scale(1.02)'"
+        onmouseout="this.style.transform='scale(1)'">
+
+      <!-- svg icon -->
+      <div style="width:60px;height:60px;margin-bottom:12px">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#b8926a" stroke-width="2"/>
+          <path d="M8 14s1-4 4-4 4 4 4 4" stroke="#0b5653" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="12" cy="9" r="2" fill="#b8926a"/>
+        </svg>
+      </div>
+
+      <h3 style="font-size:20px;color:var(--accent-deep);margin-bottom:10px">Jewelry Consultancy</h3>
+      <ul style="list-style:none;padding-left:0;color:#6b574b;line-height:1.8;font-size:15px">
+        <li>• Jewelry Polishing & Cleaning</li>
+        <li>• Jewelry School</li>
+        <li>• Jewelry Studio Setup</li>
+      </ul>
+
+      <button onclick="location.href='Courses&Consultation.html'"
+        style="margin-top:16px;padding:10px 18px;border-radius:14px;background:var(--accent-gold);
+        color:#fff;border:0;cursor:pointer;font-weight:700;width:160px">
+        Book Consultation
+      </button>
+    </div>
+
+    <!-- CARD 2: Jewelry Designing -->
+    <div style="background:white;padding:26px;border-radius:22px;
+        border:2px solid var(--accent-gold);box-shadow:0 12px 36px var(--shadow);transition:0.3s"
+        onmouseover="this.style.transform='scale(1.02)'"
+        onmouseout="this.style.transform='scale(1)'">
+
+      <!-- svg icon -->
+      <div style="width:60px;height:60px;margin-bottom:12px">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l3 4-3 4-3-4 3-4z" fill="#b8926a"/>
+          <path d="M5 14l7 8 7-8" stroke="#0b5653" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h3 style="font-size:20px;color:var(--accent-deep);margin-bottom:10px">Jewelry Designing</h3>
+      <ul style="list-style:none;padding-left:0;color:#6b574b;line-height:1.8;font-size:15px">
+        <li>• Fine Jewelry</li>
+        <li>• Costume Jewelry</li>
+        <li>• Traditional Jewelry</li>
+      </ul>
+
+      <button onclick="location.href='Courses&Consultation.html'"
+        style="margin-top:16px;padding:10px 18px;border-radius:14px;background:var(--accent-gold);
+        color:#fff;border:0;cursor:pointer;font-weight:700;width:150px">
+        Learn More
+      </button>
+    </div>
+
+    <!-- CARD 3: Jewelry Creation -->
+    <div style="background:white;padding:26px;border-radius:22px;
+        border:2px solid var(--accent-gold);box-shadow:0 12px 36px var(--shadow);transition:0.3s"
+        onmouseover="this.style.transform='scale(1.02)'"
+        onmouseout="this.style.transform='scale(1)'">
+
+      <!-- svg icon -->
+      <div style="width:60px;height:60px;margin-bottom:12px">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="6" stroke="#b8926a" stroke-width="2"/>
+          <path d="M12 6V2M12 22v-4M4 12H2m20 0h-4" stroke="#0b5653" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <h3 style="font-size:20px;color:var(--accent-deep);margin-bottom:10px">Jewelry Creation</h3>
+      <ul style="list-style:none;padding-left:0;color:#6b574b;line-height:1.8;font-size:15px">
+        <li>• Rings</li>
+        <li>• Earrings</li>
+        <li>• Necklaces</li>
+        <li>• Bracelets</li>
+        <li>• Pendants</li>
+      </ul>
+
+      <button onclick="location.href='product.html'"
+        style="margin-top:16px;padding:10px 18px;border-radius:14px;background:var(--accent-gold);
+        color:#fff;border:0;cursor:pointer;font-weight:700;width:150px">
+        View Products
+      </button>
+    </div>
+
+    <!-- CARD 4: Jewelry Accessories -->
+    <div style="background:white;padding:26px;border-radius:22px;
+        border:2px solid(var(--accent-gold));box-shadow:0 12px 36px var(--shadow);transition:0.3s"
+        onmouseover="this.style.transform='scale(1.02)'"
+        onmouseout="this.style.transform='scale(1)'">
+
+      <!-- svg icon -->
+      <div style="width:60px;height:60px;margin-bottom:12px">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+          <rect x="4" y="6" width="16" height="12" rx="3" stroke="#b8926a" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" stroke="#0b5653" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <h3 style="font-size:20px;color:var(--accent-deep);margin-bottom:10px">Jewelry Accessories</h3>
+      <ul style="list-style:none;padding-left:0;color:#6b574b;line-height:1.8;font-size:15px">
+        <li>• Watches</li>
+        <li>• Anklets</li>
+        <li>• Cufflinks</li>
+      </ul>
+
+      <button onclick="location.href='product.html'"
+        style="margin-top:16px;padding:10px 18px;border-radius:14px;background:var(--accent-gold);
+        color:#fff;border:0;cursor:pointer;font-weight:700;width:160px">
+        Explore Accessories
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT SECTION (Unique Premium + Real SVG Icons) -->
+<section id="contact" style="margin-top:80px">
+
+  <!-- Title -->
+  <div style="text-align:center;margin-bottom:25px">
+    <h2 style="font-size:30px;font-weight:800;color:var(--accent-deep);">
+      Get In Touch With Us
+    </h2>
+    <div style="width:90px;height:4px;background:var(--accent-gold);margin:10px auto;border-radius:10px"></div>
+    <p style="color:#6b574b;font-size:15px">We’re here to help you with inquiries, custom orders, and bookings.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px">
+
+    <!-- LEFT SIDE: CONTACT INFO -->
+    <div style="background:white;padding:30px;border-radius:22px;
+                border:2px solid var(--accent-gold);box-shadow:0 14px 40px var(--shadow);
+                transition:.3s">
+
+      <!-- Contact Information Title -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="#b8926a" stroke-width="2"/>
+          <path d="M12 8v4l3 2" stroke="#0b5653" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3 style="font-size:22px;font-weight:700;color:var(--accent-deep)">Contact Information</h3>
+      </div>
+
+      <!-- LOCATION -->
+      <p style="margin:10px 0;display:flex;align-items:center;gap:10px;">
+        <svg width="22" height="22" fill="none" stroke="#b8926a" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 1 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Gateway Mall, Lilongwe
+      </p>
+
+      <!-- PHONE -->
+      <p style="margin:10px 0;display:flex;align-items:center;gap:10px;">
+        <svg width="22" height="22" fill="none" stroke="#b8926a" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2.11 2.11 0 0 1-2.32 2.1 19.79 19.79 0 0 1-8.63-3.07 
+                   19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2 4.32 
+                   2.11 2.11 0 0 1 4.11 2h3a2.11 2.11 0 0 1 2.11 1.82 
+                   13.4 13.4 0 0 0 .7 2.93 2.11 2.11 0 0 1-.47 2.18L8.1 10.9a16 
+                   16 0 0 0 6 6l1.97-1.37A2.11 2.11 0 0 1 18.2 15h.11 
+                   a13.4 13.4 0 0 0 2.93.7A2.11 2.11 0 0 1 22 16.92z"/>
+        </svg>
+        +265 99x xxx xxx
+      </p>
+
+      <!-- EMAIL -->
+      <p style="margin:10px 0;display:flex;align-items:center;gap:10px;">
+        <svg width="22" height="22" fill="none" stroke="#b8926a" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4
+                   a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        benaiahjewelry@gmail.com
+      </p>
+
+      <!-- Social Icons -->
+      <h4 style="margin-top:22px;font-size:18px;color:var(--accent-gold)">Follow Us</h4>
+      <div style="display:flex;gap:14px;margin-top:10px">
+
+        <!-- Instagram SVG -->
+        <a href="#" style="display:inline-flex;padding:10px;border-radius:50%;background:var(--accent-deep);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17" cy="7" r="1.2" fill="#fff"/>
+          </svg>
+        </a>
+
+        <!-- Facebook SVG -->
+        <a href="#" style="display:inline-flex;padding:10px;border-radius:50%;background:var(--accent-deep);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 
+                     1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 
+                     1.2V12h2.5l-.4 3h-2.1v7A10 10 0 0 0 22 12"/>
+          </svg>
+        </a>
+
+      </div>
+
+      <!-- WhatsApp Button -->
+      <button onclick="window.open('https://wa.me/2659xxxxxxx','_blank')"
+              style="margin-top:28px;width:100%;padding:14px;border-radius:14px;
+              background:#25D366;color:white;border:0;font-weight:700;font-size:16px;cursor:pointer;">
+        Chat on WhatsApp
+      </button>
+    </div>
+
+    <!-- RIGHT SIDE: CONTACT FORM -->
+    <div style="background:white;padding:30px;border-radius:22px;
+                border:2px solid var(--accent-gold);box-shadow:0 14px 40px var(--shadow);">
+
+      <h3 style="font-size:22px;font-weight:700;color:var(--accent-deep);margin-bottom:16px;">
+        Send Us a Message
+      </h3>
+
+      <form>
+        <input type="text" placeholder="Full Name"
+          style="width:100%;padding:12px;margin-bottom:14px;border-radius:12px;border:1px solid var(--muted);">
+
+        <input type="email" placeholder="Email Address"
+          style="width:100%;padding:12px;margin-bottom:14px;border-radius:12px;border:1px solid var(--muted);">
+
+        <textarea rows="5" placeholder="Write your message..."
+          style="width:100%;padding:12px;margin-bottom:14px;border-radius:12px;border:1px solid var(--muted);"></textarea>
+
+        <button type="submit"
+          style="width:100%;padding:14px;border-radius:14px;background:var(--accent-deep);
+                color:white;border:0;font-weight:700;font-size:16px;cursor:pointer;">
+          Send Message
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+  
+  </div>
+
+</section>
+
+
+
+
+  <!-- newsletter -->
+  <section class="newsletter" aria-label="newsletter">
+    <div style="flex:1">
+      <h3 style="margin:0 0 6px">Subscribe to the newsletter</h3>
+      <p style="margin:0 0 12px" class="muted">Get new arrivals, workshop dates, and exclusive discounts delivered to your inbox.</p>
+      <div style="display:flex;gap:8px">
+        <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+        <button class="viewall" onclick="subscribeNewsletter()">Subscribe</button>
+      </div>
+    </div>
+    <div style="width:180px;text-align:center">
+      <img src="img/13.png" alt="newsletter" style="width:100%;border-radius:10px;object-fit:cover">
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer>
+    <div class="ft-grid">
+      <div>
+        <h4>About Benaiah Jewelry</h4>
+        <p>We design, craft and teach. Visit our store at Gateway Mall or join a workshop led by experienced artisans. Crafted with care in Malawi.</p>
+        <p style="margin-top:12px"><a href="#" style="color:var(--accent-gold);text-decoration:none">Read our story →</a></p>
+      </div>
+
+      <div>
+        <h4>Quick links</h4>
+        <a href="products.html">Products</a>
+        <a href="bookings.html">Workshops</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Account</a>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">support@benaiahjewelry.com</p>
+        <p class="muted">+265 1 234 567</p>
+        <p class="muted">Gateway Mall, Lilongwe</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* HERO SLIDER */
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const nextBtn = document.getElementById('nextSlide');
+  const prevBtn = document.getElementById('prevSlide');
+  let idx = 0;
+  let timer = null;
+
+  function show(i){
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    idx = i;
+  }
+
+  function next(){
+    show((idx + 1) % slides.length);
+  }
+  function prev(){
+    show((idx - 1 + slides.length) % slides.length);
+  }
+
+  nextBtn.addEventListener('click', () => { next(); resetTimer(); });
+  prevBtn.addEventListener('click', () => { prev(); resetTimer(); });
+
+  // autoplay
+  function startTimer(){ timer = setInterval(next, 5500); }
+  function stopTimer(){ clearInterval(timer); timer = null; }
+  function resetTimer(){ stopTimer(); startTimer(); }
+
+  document.getElementById('heroSlider').addEventListener('mouseenter', stopTimer);
+  document.getElementById('heroSlider').addEventListener('mouseleave', startTimer);
+
+  startTimer();
+})();
+
+/* OFFER THUMBS -> main image */
+document.querySelectorAll('.special .thumbs img').forEach(img => {
+  img.addEventListener('click', e => {
+    const src = e.currentTarget.getAttribute('data-src') || e.currentTarget.src;
+    document.getElementById('mainOfferImage').src = src;
+  });
+});
+
+/* COUNTDOWN: example — counts down 5 days from now (for demo) */
+(function(){
+  const end = new Date(Date.now() + 5*24*60*60*1000 + 7*60*60*1000 + 12*60*1000 + 10*1000); // demo target
+  const elDays = document.getElementById('days');
+  const elHours = document.getElementById('hours');
+  const elMins = document.getElementById('minutes');
+  const elSecs = document.getElementById('seconds');
+
+  function update(){
+    const now = new Date();
+    let diff = Math.max(0, end - now);
+    const d = Math.floor(diff / (1000*60*60*24));
+    diff -= d * (1000*60*60*24);
+    const h = Math.floor(diff / (1000*60*60));
+    diff -= h * (1000*60*60);
+    const m = Math.floor(diff / (1000*60));
+    diff -= m * (1000*60);
+    const s = Math.floor(diff / 1000);
+
+    elDays.textContent = String(d).padStart(2,'0');
+    elHours.textContent = String(h).padStart(2,'0');
+    elMins.textContent = String(m).padStart(2,'0');
+    elSecs.textContent = String(s).padStart(2,'0');
+  }
+
+  update();
+  setInterval(update, 1000);
+})();
+
+/* Newsletter demo action */
+function subscribeNewsletter(){
+  alert('Thanks — we will email you updates (demo).');
+}
+
+/* Login demo */
+function openLogin(){
+  alert('This will open the login modal (demo).');
+}
+</script>
+
+</body>
+</html>

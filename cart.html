@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cart — Benaiah Jewelry</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#fbf7f4;
+  --paper:#fffaf8;
+  --accent-gold:#b8926a;
+  --accent-deep:#0b5653;
+  --text:#3f342c;
+  --shadow:rgba(46,38,30,0.07);
+  --radius:14px;
+  --container:1000px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+.container{max-width:var(--container);margin:0 auto;padding:18px}
+
+/* HEADER */
+.site-header {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px;background:white;border-radius:16px;
+  box-shadow:0 6px 22px var(--shadow);
+  position:sticky;top:0;z-index:999;
+}
+.logo img{height:52px}
+.header-actions{display:flex;gap:12px;align-items:center}
+.icon-btn{background:#fff;border:1px solid #eee;padding:10px;border-radius:50%;cursor:pointer}
+
+/* NAV */
+.main-nav{display:flex;gap:18px;justify-content:center;margin:14px 0;
+  background:var(--accent-deep);padding:10px;border-radius:40px;color:#fff}
+.main-nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:14px}
+.main-nav a.active{background:var(--accent-gold)}
+
+/* PAGE HEADER */
+.page-head{margin:20px 0}
+.page-head h2{margin:0;font-size:24px;font-weight:700}
+.breadcrumb{font-size:13px;color:#7a6558}
+
+/* CART TABLE */
+.cart-box{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 10px 30px var(--shadow);
+}
+.cart-row{
+  display:grid;
+  grid-template-columns:100px 1fr 100px 120px 30px;
+  gap:16px;
+  padding:16px 0;
+  align-items:center;
+  border-bottom:1px solid #eee;
+}
+.cart-row img{
+  width:100%;height:80px;object-fit:cover;border-radius:10px
+}
+.prod-title{font-size:14px;font-weight:600}
+.prod-meta{color:#746055;font-size:13px}
+.qty-box input{
+  width:60px;padding:6px;border-radius:8px;text-align:center;
+  border:1px solid #ddd;
+}
+.remove-btn{cursor:pointer;font-size:22px;color:#b02a2a}
+
+/* TOTAL BOX */
+.total-box{
+  margin-top:20px;
+  padding:20px;
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 10px 30px var(--shadow);
+}
+.total-row{
+  display:flex;justify-content:space-between;margin-bottom:10px;
+}
+.total-row .label{color:#746055}
+.total-final{
+  font-size:20px;font-weight:700;
+  color:var(--accent-deep);
+}
+
+/* BUTTONS */
+.btn-checkout{
+  background:var(--accent-gold);
+  color:#fff;border:0;padding:12px 20px;
+  border-radius:12px;cursor:pointer;
+  font-size:16px;margin-top:12px;width:100%;
+}
+.empty{
+  padding:40px;text-align:center;color:#7a6558
+}
+
+/* RESPONSIVE */
+@media (max-width:720px){
+  .cart-row{
+    grid-template-columns:80px 1fr 80px 80px 30px;
+  }
+}
+@media (max-width:520px){
+  .cart-row{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .cart-row img{margin:0 auto}
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="logo">
+    <img src="https://i.ibb.co/0hQdZQK/benaiah-logo.png">
+  </a>
+
+  <div class="header-actions">
+    <button class="icon-btn" onclick="location.href='cart.html'">🛒</button>
+    <button class="icon-btn" onclick="openLogin()">👤</button>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav">
+  <a href="index.html">Home</a>
+  <a href="products.html">Store</a>
+  <a href="#" >Offers</a>
+  <a href="#" >Popular</a>
+  <a href="bookings.html">Book a Class</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-head">
+  <h2>Your Cart</h2>
+  <div class="breadcrumb">Home › Cart</div>
+</section>
+
+<!-- CART CONTENT -->
+<div class="cart-box" id="cartBox"></div>
+
+<!-- TOTAL -->
+<div class="total-box" id="totalBox" style="display:none">
+  <div class="total-row">
+    <div class="label">Subtotal</div>
+    <div id="subtotalValue">0</div>
+  </div>
+  <div class="total-row">
+    <div class="label">Shipping</div>
+    <div>Free</div>
+  </div>
+  <div class="total-row total-final">
+    <div>Total</div>
+    <div id="totalValue">0</div>
+  </div>
+
+  <button class="btn-checkout" onclick="goCheckout()">Proceed to Checkout</button>
+</div>
+
+</div>
+
+<script>
+/* -------------------------------------
+   CART SYSTEM (localStorage based)
+--------------------------------------*/
+function getCart(){
+  return JSON.parse(localStorage.getItem("benaiah_cart") || "[]");
+}
+function saveCart(cart){
+  localStorage.setItem("benaiah_cart", JSON.stringify(cart));
+}
+
+function removeItem(id){
+  let cart = getCart().filter(item => item.id !== id);
+  saveCart(cart);
+  renderCart();
+}
+
+function updateQty(id, qty){
+  let cart = getCart();
+  let item = cart.find(i => i.id === id);
+  if(item){
+    item.qty = Math.max(1, qty);
+    saveCart(cart);
+    renderCart();
+  }
+}
+
+function formatMoney(v){
+  return (v/1000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,".") + " $";
+}
+
+/* -------------------------------------
+   RENDER CART
+--------------------------------------*/
+function renderCart(){
+  const wrap = document.getElementById("cartBox");
+  const totalWrap = document.getElementById("totalBox");
+  let cart = getCart();
+
+  if(cart.length === 0){
+    wrap.innerHTML = `<div class="empty">Your cart is empty.</div>`;
+    totalWrap.style.display = "none";
+    return;
+  }
+
+  wrap.innerHTML = "";
+  let subtotal = 0;
+
+  cart.forEach(item=>{
+    let row = document.createElement("div");
+    row.className = "cart-row";
+
+    let totalItem = item.price * item.qty;
+    subtotal += totalItem;
+
+    row.innerHTML = `
+      <img src="${item.img}">
+      <div>
+        <div class="prod-title">${item.title}</div>
+        <div class="prod-meta">${item.category || ""}</div>
+      </div>
+      <div>${formatMoney(item.price)}</div>
+      <div class="qty-box">
+        <input type="number" min="1" value="${item.qty}" onchange="updateQty(${item.id}, this.value)">
+      </div>
+      <div class="remove-btn" onclick="removeItem(${item.id})">×</div>
+    `;
+    wrap.appendChild(row);
+  });
+
+  document.getElementById("subtotalValue").innerText = formatMoney(subtotal);
+  document.getElementById("totalValue").innerText = formatMoney(subtotal);
+  totalWrap.style.display = "block";
+}
+
+function goCheckout(){
+  window.location.href = "checkout.html";
+}
+
+function openLogin(){ alert("Login demo"); }
+
+/* init */
+renderCart();
+</script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Products — Benaiah Jewelry</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+ :root{
+    --bg:#fbf7f4;
+    --paper:#fffaf8;
+    --accent-gold:#b8926a;
+    --accent-deep:#0b5653;
+    --muted:#e9dfd3;
+    --text:#3f342c;
+    --shadow:rgba(46,38,30,0.07);
+    --radius-lg:20px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Poppins",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .container{max-width:1200px;margin:0 auto;padding:18px}
+
+  /* ===== TRANSPARENT HEADER (sticky) ===== */
+  .site-header {
+    position:sticky;
+    top:0;
+    z-index:999;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 18px;
+    background:rgba(255,255,255,0.12); /* slight translucency */
+    backdrop-filter: blur(6px);
+    border-radius:14px;
+    transition:background .25s,box-shadow .25s;
+  }
+  .site-header.scrolled{
+    background:rgba(255,255,255,0.88);
+    box-shadow:0 8px 28px rgba(0,0,0,0.08);
+  }
+
+  .logo img { height:56px; width:auto; object-fit:contain; display:block }
+
+  /* search */
+  .search {
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    padding:10px 14px;
+    border-radius:40px;
+    border:1px solid rgba(0,0,0,0.06);
+    max-width:680px;
+  }
+  .search input {
+    border:none;outline:none;background:transparent;
+    font-size:15px;width:100%;color:#333;
+  }
+  .icon-btn {
+    background:transparent;border:0;padding:8px;border-radius:50%;cursor:pointer;width:40px;height:40px;
+    display:inline-flex;align-items:center;justify-content:center;
+  }
+  .header-actions{display:flex;align-items:center;gap:8px}
+/* nav */
+.main-nav{display:flex;gap:18px;justify-content:center;margin:14px 0;background:var(--accent-deep);padding:10px;border-radius:40px;color:#fff;box-shadow:0 8px 22px rgba(11,86,83,0.18)}
+.main-nav a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:14px;font-weight:600}
+.main-nav a.active{background:var(--accent-gold);color:#fff}
+
+/* page header (breadcrumb + title) */
+.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:18px 0}
+.page-title{font-size:22px;font-weight:700}
+.breadcrumb{color:#7a6558;font-size:13px}
+
+/* layout */
+.layout{display:grid;grid-template-columns:280px 1fr;gap:22px;align-items:start}
+
+/* filter panel */
+.filters{background:white;border-radius:12px;padding:16px;box-shadow:0 8px 24px var(--shadow)}
+.filters h4{margin:0 0 10px;font-size:15px}
+.filter-group{margin-bottom:14px}
+.filter-group label{display:block;font-size:13px;margin-bottom:8px;color:#6e574b}
+.checkbox-row{display:flex;gap:8px;flex-wrap:wrap}
+.checkbox-row button{padding:6px 10px;border-radius:10px;border:1px solid rgba(63,52,44,0.06);background:#fff;cursor:pointer}
+.range-inputs{display:flex;gap:8px;align-items:center}
+.range-inputs input{width:100%;padding:8px;border-radius:8px;border:1px solid #eee}
+
+/* apply/reset */
+.filter-actions{display:flex;gap:8px;justify-content:space-between;margin-top:8px}
+.btn-apply{background:var(--accent-gold);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+.btn-clear{background:#fff;border:1px solid #ddd;padding:10px 14px;border-radius:10px;cursor:pointer}
+
+/* product area top controls */
+.controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px}
+.controls .left{display:flex;gap:12px;align-items:center}
+.sort-select select{padding:8px;border-radius:10px;border:1px solid #eee}
+
+/* product grid */
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;border-radius:12px;padding:12px;box-shadow:0 10px 28px var(--shadow);position:relative;display:flex;flex-direction:column}
+.card .imgwrap{height:180px;border-radius:10px;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+.card .meta{padding-top:10px;flex:1;display:flex;flex-direction:column}
+.card .title{font-weight:700;margin-bottom:6px;font-size:14px}
+.card .desc{font-size:13px;color:#786455;margin-bottom:8px}
+.card .price-row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.price{color:var(--accent-gold);font-weight:800}
+.old{color:#bfb3a5;text-decoration:line-through;font-weight:600;font-size:13px}
+
+/* product actions */
+.card .actions{display:flex;gap:8px;margin-top:12px}
+.btn-outline{padding:8px 10px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer}
+.btn-primary{background:var(--accent-deep);color:#fff;padding:8px 12px;border-radius:10px;border:0;cursor:pointer}
+
+/* pagination */
+.pagination{display:flex;gap:8px;justify-content:center;margin-top:18px}
+.page-btn{padding:8px 12px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer}
+.page-btn.active{background:var(--accent-gold);color:#fff;border-color:var(--accent-gold)}
+
+/* empty state */
+.empty{padding:40px;text-align:center;color:#7b675b}
+
+/* responsive */
+@media (max-width:1000px){
+  .products-grid{grid-template-columns:repeat(2,1fr)}
+  .layout{grid-template-columns:220px 1fr}
+}
+@media (max-width:740px){
+  .layout{grid-template-columns:1fr;gap:12px}
+  .filters{order:2}
+  .products-grid{grid-template-columns:1fr}
+  .search{display:none}
+  .main-nav{overflow:auto;padding:12px}
+  .site-header{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <<!-- HEADER -->
+    <header class="site-header" id="siteHeader" role="banner">
+      <div class="logo">
+        <a href="index.html"><img src="img/Benaiah Jewelry Architects 2.png" alt="Benaiah Jewelry"></a>
+      </div>
+
+      <div class="search" role="search" aria-label="product search">
+        <input id="siteSearch" type="search" placeholder="Search for jewelry, gemstones, or collections..." aria-label="Search products">
+        <button class="icon-btn" aria-label="Search button" id="btnSearch" title="Search">
+          <!-- search SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.35-4.35" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11" cy="11" r="6" stroke="#6b6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-actions" role="navigation" aria-label="user actions">
+        <button class="icon-btn" aria-label="Cart" id="cartBtn" title="Cart">
+          <!-- cart SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6h15l-1.5 8.5a2 2 0 0 1-2 1.5H9" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1" fill="#3f3f3f"/>
+            <circle cx="18" cy="20" r="1" fill="#3f3f3f"/>
+          </svg>
+        </button>
+
+        <button class="icon-btn" onclick="openLogin()" aria-label="Account" title="Account">
+          <!-- user SVG -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="7" r="4" stroke="#3f3f3f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+  <!-- nav -->
+  <nav class="main-nav" aria-label="Main navigation" style="margin-top:12px">
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active">Store</a>
+   <a href="index.html#services">Services</a>
+    <a href="#Courses&Consultation.html">Courses & Consultation</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- page heading -->
+  <div class="page-head">
+    <div>
+      <div class="page-title">Products</div>
+      <div class="breadcrumb">Home › Store</div>
+    </div>
+    <div>
+      <small class="muted">Showing <span id="resultsCount">0</span> products</small>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- FILTERS -->
+    <aside class="filters" aria-label="Product filters">
+      <div class="filter-group">
+        <h4>Search</h4>
+        <input type="search" id="filterSearch" placeholder="Search by name or description" style="width:100%;padding:10px;border-radius:10px;border:1px solid #eee">
+      </div>
+
+      <div class="filter-group">
+        <h4>Category</h4>
+        <div class="checkbox-row" id="catFilters">
+          <!-- buttons dynamically populated -->
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Gemstone</h4>
+        <div class="checkbox-row" id="gemFilters"></div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Price range</h4>
+        <div class="range-inputs">
+          <input type="number" id="minPrice" placeholder="Min" min="0">
+          <input type="number" id="maxPrice" placeholder="Max" min="0">
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h4>Availability</h4>
+        <div class="checkbox-row">
+          <button class="btn-outline" data-availability="in" id="availIn">In Stock</button>
+          <button class="btn-outline" data-availability="out" id="availOut">Out of stock</button>
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button class="btn-apply" id="applyFilters">Apply</button>
+        <button class="btn-clear" id="clearFilters">Clear</button>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS -->
+    <main>
+      <div class="controls">
+        <div class="left">
+          <div class="muted" id="activeFiltersText">All products</div>
+        </div>
+
+        <div class="right" style="display:flex;gap:12px;align-items:center">
+          <div class="sort-select">
+            <label for="sortBy" class="muted" style="margin-right:8px">Sort:</label>
+            <select id="sortBy" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price — Low to High</option>
+              <option value="price-desc">Price — High to Low</option>
+              <option value="newest">Newest</option>
+            </select>
+          </div>
+          <div>
+            <label for="perPage" class="muted" style="margin-right:8px">Per page:</label>
+            <select id="perPage">
+              <option>9</option>
+              <option>12</option>
+              <option>24</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid" aria-live="polite"></div>
+
+      <div class="pagination" id="pagination"></div>
+      <div style="margin-top:18px;color:#746055;font-size:13px">Tip: click a product to view details (demo).</div>
+    </main>
+  </div>
+
+  <!-- footer -->
+  <footer style="margin-top:28px;background:linear-gradient(180deg,var(--accent-deep),#083b3b);color:#fff;padding:26px;border-radius:12px">
+    <div style="display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap">
+      <div style="max-width:500px">
+        <h3 style="margin:0 0 8px">Benaiah Jewelry</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.85)">Designers, makers and trainers in jewelry and gemstones. Visit our store at Gateway Mall.</p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 6px">Quick links</h4>
+        <div><a href="products.html" style="color:rgba(255,255,255,0.92);text-decoration:none">Products</a></div>
+        <div><a href="bookings.html" style="color:rgba(255,255,255,0.92);text-decoration:none">Workshops</a></div>
+        <div><a href="contact.html" style="color:rgba(255,255,255,0.92);text-decoration:none">Contact</a></div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ---------- Sample product dataset (mock) ---------- */
+const PRODUCTS = [
+  { id:1, title:"Single-layer circular bar bracelet", price:295000, old:390000, category:"Bracelet", gemstone:"None", stock:true, img:"img", sku:"BR-001", date:"2025-10-02"},
+  { id:2, title:"Ball dangle earrings, model 647", price:295000, old:null, category:"Earrings", gemstone:"Crystal", stock:true, img:"https://i.ibb.co/QHT7S2J/p2.jpg", sku:"ER-002", date:"2025-11-01"},
+  { id:3, title:"Crystal drop earrings", price:295000, old:null, category:"Earrings", gemstone:"Crystal", stock:false, img:"https://i.ibb.co/HTJ9FnJ/p3.jpg", sku:"ER-003", date:"2025-09-12"},
+  { id:4, title:"Gemstone ring", price:295000, old:null, category:"Ring", gemstone:"Ruby", stock:true, img:"https://i.ibb.co/ZxF7v6z/p4.jpg", sku:"RI-004", date:"2025-08-21"},
+  { id:5, title:"Gold stack bracelet", price:295000, old:390000, category:"Bracelet", gemstone:"Gold", stock:true, img:"https://i.ibb.co/PCtcnRw/p5.jpg", sku:"BR-005", date:"2025-10-12"},
+  { id:6, title:"Heart pendant necklace", price:295000, old:390000, category:"Necklace", gemstone:"Diamond", stock:false, img:"https://i.ibb.co/y6fZnPQ/p6.jpg", sku:"NE-006", date:"2025-07-15"},
+  { id:7, title:"Star charm necklace", price:295000, old:null, category:"Necklace", gemstone:"None", stock:true, img:"https://i.ibb.co/jf5Qy02/p7.jpg", sku:"NE-007", date:"2025-11-03"},
+  { id:8, title:"Pearl & gold ring", price:295000, old:null, category:"Ring", gemstone:"Pearl", stock:true, img:"https://i.ibb.co/V93txkF/p8.jpg", sku:"RI-008", date:"2025-10-28"},
+  // add more to demonstrate pagination
+  { id:9, title:"Minimalist leaf bracelet", price:250000, old:300000, category:"Bracelet", gemstone:"None", stock:true, img:"https://i.ibb.co/pLg4gRh/r1.jpg", sku:"BR-009", date:"2025-11-05" },
+  { id:10, title:"Classic hoop earrings", price:180000, old:null, category:"Earrings", gemstone:"None", stock:true, img:"https://i.ibb.co/VSDRCfD/r2.jpg", sku:"ER-010", date:"2025-10-20" },
+  { id:11, title:"Vintage pendant", price:210000, old:260000, category:"Necklace", gemstone:"Emerald", stock:false, img:"https://i.ibb.co/68Hn7ZC/r3.jpg", sku:"NE-011", date:"2025-09-01" },
+  { id:12, title:"Crown ring", price:320000, old:null, category:"Ring", gemstone:"Sapphire", stock:true, img:"https://i.ibb.co/4Zb8cNy/model1.jpg", sku:"RI-012", date:"2025-11-07" }
+];
+
+/* ---------- UI state ---------- */
+let state = {
+  products: PRODUCTS.slice(),
+  filters: { categories: new Set(), gemstones: new Set(), minPrice: null, maxPrice: null, availability: null, search: "" },
+  sortBy: 'featured',
+  perPage: 9,
+  page: 1
+};
+
+/* ---------- Utilities ---------- */
+const $ = (sel, ctx=document) => ctx.querySelector(sel);
+const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+/* ---------- Populate filter buttons (categories & gemstones) ---------- */
+function initFilters(){
+  const cats = Array.from(new Set(PRODUCTS.map(p=>p.category))).sort();
+  const gems = Array.from(new Set(PRODUCTS.map(p=>p.gemstone))).filter(g=>g && g!=="None").sort();
+
+  const catWrap = $('#catFilters');
+  cats.forEach(c=>{
+    const btn = document.createElement('button');
+    btn.textContent = c;
+    btn.dataset.cat = c;
+    btn.className = 'btn-outline';
+    btn.onclick = () => { toggleCategory(c, btn) };
+    catWrap.appendChild(btn);
+  });
+
+  const gemWrap = $('#gemFilters');
+  gems.forEach(g=>{
+    const btn = document.createElement('button');
+    btn.textContent = g;
+    btn.dataset.gem = g;
+    btn.className = 'btn-outline';
+    btn.onclick = () => { toggleGem(g, btn) };
+    gemWrap.appendChild(btn);
+  });
+}
+
+/* ---------- Toggle filter selections ---------- */
+function toggleCategory(cat, btn){
+  if(state.filters.categories.has(cat)){
+    state.filters.categories.delete(cat); btn.style.background=''; btn.style.border='1px solid #ddd';
+  } else {
+    state.filters.categories.add(cat); btn.style.background='var(--accent-deep)'; btn.style.color='#fff'; btn.style.border='1px solid var(--accent-deep)';
+  }
+}
+function toggleGem(gem, btn){
+  if(state.filters.gemstones.has(gem)){
+    state.filters.gemstones.delete(gem); btn.style.background=''; btn.style.border='1px solid #ddd';
+  } else {
+    state.filters.gemstones.add(gem); btn.style.background='var(--accent-deep)'; btn.style.color='#fff'; btn.style.border='1px solid var(--accent-deep)';
+  }
+}
+
+/* ---------- Apply / Clear ---------- */
+$('#applyFilters').addEventListener('click', ()=>{
+  state.filters.search = $('#filterSearch').value.trim();
+  const min = parseInt($('#minPrice').value)||null;
+  const max = parseInt($('#maxPrice').value)||null;
+  state.filters.minPrice = min; state.filters.maxPrice = max;
+
+  // availability buttons
+  const inBtn = $('#availIn'); const outBtn = $('#availOut');
+  if(inBtn.classList.contains('active')) state.filters.availability = 'in';
+  else if(outBtn.classList.contains('active')) state.filters.availability = 'out';
+  else state.filters.availability = null;
+
+  state.page = 1;
+  renderProducts();
+});
+
+$('#clearFilters').addEventListener('click', ()=>{
+  // reset UI
+  $('#filterSearch').value=''; $('#minPrice').value=''; $('#maxPrice').value='';
+  state.filters = { categories: new Set(), gemstones: new Set(), minPrice: null, maxPrice: null, availability: null, search: ""};
+  // reset buttons styling
+  $$('#catFilters button').forEach(b=>{ b.style.background=''; b.style.border='1px solid #eee'; b.style.color='' });
+  $$('#gemFilters button').forEach(b=>{ b.style.background=''; b.style.border='1px solid #eee'; b.style.color='' });
+  $('#availIn').classList.remove('active'); $('#availOut').classList.remove('active'); $('#availIn').style.background=''; $('#availOut').style.background='';
+  state.page = 1;
+  renderProducts();
+});
+
+/* availability toggles */
+$('#availIn').addEventListener('click', (e)=>{ toggleAvail(e.target); });
+$('#availOut').addEventListener('click', (e)=>{ toggleAvail(e.target); });
+function toggleAvail(btn){
+  const other = btn.id==='availIn' ? $('#availOut') : $('#availIn');
+  if(btn.classList.contains('active')){ btn.classList.remove('active'); btn.style.background=''; state.filters.availability=null; }
+  else { btn.classList.add('active'); btn.style.background='var(--accent-deep)'; btn.style.color='#fff'; other.classList.remove('active'); other.style.background=''; state.filters.availability = btn.dataset.availability; }
+}
+
+/* sort and per-page */
+$('#sortBy').addEventListener('change', (e)=>{ state.sortBy = e.target.value; state.page = 1; renderProducts(); });
+$('#perPage').addEventListener('change', (e)=>{ state.perPage = parseInt(e.target.value); state.page = 1; renderProducts(); });
+
+/* global search */
+$('#globalSearch').addEventListener('input', (e)=>{ state.filters.search = e.target.value.trim(); state.page = 1; renderProducts(); });
+
+/* ---------- Filtering, Sorting, Pagination ---------- */
+function applyFiltersTo(data){
+  return data.filter(p=>{
+    // category filter
+    if(state.filters.categories.size>0 && !state.filters.categories.has(p.category)) return false;
+    // gemstone filter
+    if(state.filters.gemstones.size>0 && !state.filters.gemstones.has(p.gemstone)) return false;
+    // availability
+    if(state.filters.availability==='in' && !p.stock) return false;
+    if(state.filters.availability==='out' && p.stock) return false;
+    // price
+    if(state.filters.minPrice != null && p.price < state.filters.minPrice) return false;
+    if(state.filters.maxPrice != null && p.price > state.filters.maxPrice) return false;
+    // search
+    const q = (state.filters.search || '').toLowerCase();
+    if(q){
+      const found = (p.title + ' ' + (p.sku||'') + ' ' + (p.gemstone||'')).toLowerCase().includes(q);
+      if(!found) return false;
+    }
+    return true;
+  });
+}
+
+function applySort(data){
+  const d = data.slice();
+  switch(state.sortBy){
+    case 'price-asc': d.sort((a,b)=>a.price-b.price); break;
+    case 'price-desc': d.sort((a,b)=>b.price-a.price); break;
+    case 'newest': d.sort((a,b)=> new Date(b.date) - new Date(a.date)); break;
+    default: d.sort((a,b)=> a.id - b.id ); break;
+  }
+  return d;
+}
+
+function renderProducts(){
+  // filter & sort
+  let filtered = applyFiltersTo(PRODUCTS);
+  filtered = applySort(filtered);
+
+  // update count
+  $('#resultsCount').textContent = filtered.length;
+
+  // pagination
+  const per = state.perPage;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / per));
+  if(state.page > totalPages) state.page = totalPages;
+  const start = (state.page - 1) * per;
+  const pageItems = filtered.slice(start, start + per);
+
+  // render grid
+  const grid = $('#productsGrid');
+  grid.innerHTML = '';
+  if(pageItems.length === 0){
+    grid.innerHTML = `<div class="empty">No products match your filters.</div>`;
+  } else {
+    pageItems.forEach(p => {
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="imgwrap"><img src="${p.img}" alt="${p.title}"></div>
+        <div class="meta">
+          <div class="title">${p.title}</div>
+          <div class="desc">${p.category} • ${p.gemstone}</div>
+          <div class="price-row">
+            <div><span class="price">${formatPrice(p.price)}</span>${p.old?'<span class="old">'+formatPrice(p.old)+'</span>':''}</div>
+            <div style="text-align:right">
+              ${p.stock ? '<span style="color:green;font-weight:600">In stock</span>' : '<span style="color:#b02a2a;font-weight:600">Out</span>'}
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn-outline" onclick="viewProduct(${p.id})">View</button>
+            <button class="btn-primary" onclick="addToCart(${p.id})">Add</button>
+          </div>
+        </div>
+      `;
+      el.querySelector('.card')?.addEventListener('click', ()=> viewProduct(p.id));
+      grid.appendChild(el);
+    });
+  }
+
+  // render pagination controls
+  renderPagination(totalPages);
+}
+
+/* pagination UI */
+function renderPagination(totalPages){
+  const wrap = $('#pagination');
+  wrap.innerHTML = '';
+  if(totalPages <= 1) return;
+  // prev
+  const prev = document.createElement('button');
+  prev.className = 'page-btn';
+  prev.textContent = 'Prev';
+  prev.disabled = state.page === 1;
+  prev.onclick = ()=>{ if(state.page>1){ state.page--; renderProducts(); } };
+  wrap.appendChild(prev);
+
+  for(let i=1;i<=totalPages;i++){
+    const btn = document.createElement('button');
+    btn.className = 'page-btn' + (i===state.page ? ' active' : '');
+    btn.textContent = String(i);
+    btn.onclick = ()=>{ state.page = i; renderProducts(); };
+    wrap.appendChild(btn);
+  }
+
+  const next = document.createElement('button');
+  next.className = 'page-btn';
+  next.textContent = 'Next';
+  next.disabled = state.page === totalPages;
+  next.onclick = ()=>{ if(state.page<totalPages){ state.page++; renderProducts(); } };
+  wrap.appendChild(next);
+}
+
+/* ---------- Helpers ---------- */
+function formatPrice(v){
+  // display using format like "295.000 $"
+  const thousand = (v/1000).toFixed(0);
+  return thousand.replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " $";
+}
+
+/* ---------- Actions (demo hooks) ---------- */
+function viewProduct(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  alert(`View product (demo): ${p.title}\nSKU: ${p.sku}\nPrice: ${formatPrice(p.price)}`);
+}
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  alert(`Added to cart (demo): ${p.title}`);
+}
+function openLogin(){ alert('Open login (demo)'); }
+
+/* ---------- Init ---------- */
+initFilters();
+renderProducts();
+
+/* allow pressing Enter in filter search to apply */
+$('#filterSearch').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ $('#applyFilters').click(); } });
+
+</script>
+</body>
+</html>
