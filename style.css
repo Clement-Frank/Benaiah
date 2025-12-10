@@ -212,3 +212,10 @@
   .center{text-align:center}
   .hide-mobile{display:inline-block}
   @media (max-width:560px){.hide-mobile{display:none}}
+
+          /* categories */
+.categories{display:flex;gap:18px;justify-content:center;margin:26px 0}
+.category{background:#fff;padding:18px;border-radius:14px;display:flex;flex-direction:column;align-items:center;width:120px;text-decoration:none;color:var(--text);box-shadow:0 8px 28px var(--shadow);transition:.18s}
+.category img{width:64px;height:64px;object-fit:contain}
+.category p{margin-top:10px;font-weight:700}
+.category:hover{transform:translateY(-6px)}
