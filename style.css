@@ -157,14 +157,6 @@
   .card .old{margin-left:8px;color:#bfb3a5;text-decoration:line-through;font-weight:600}
   .card .badge{position:absolute;left:12px;top:12px;background:var(--accent-deep);color:#fff;padding:6px 8px;border-radius:10px;font-size:12px}
 
-  /* book class teaser */
-  .book-teaser{
-    margin:30px 0;border-radius:16px;background:linear-gradient(90deg,#f7efe8,#fffaf8);padding:18px;display:flex;gap:16px;align-items:center;box-shadow:0 12px 28px var(--shadow)
-  }
-  .book-teaser img{width:160px;height:120px;object-fit:cover;border-radius:12px}
-  .book-teaser .txt h3{margin:0;font-size:20px}
-  .book-teaser .txt p{margin:8px 0;color:#746055}
-
   /* testimonials */
   .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}
   .testimonial{background:white;border-radius:14px;padding:16px;box-shadow:0 10px 26px var(--shadow)}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gemstone Guide — Benaiah Jewelry Architects</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<style>
+  /* --- Gemstone Guide Enhancements --- */
+  .gem-hero{
+    background:linear-gradient(135deg,#f5efe9,#e8d8c6);
+    border-radius:24px;
+    padding:48px 24px;
+    text-align:center;
+    margin-bottom:40px;
+  }
+  .gem-hero h1{font-size:40px;letter-spacing:-0.5px}
+  .gem-hero span{color:var(--accent-gold)}
+
+  .gem-grid .card{
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .gem-grid .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,rgba(184,146,106,.15),rgba(11,86,83,.15));
+    opacity:0;
+    transition:.35s ease;
+  }
+  .gem-grid .card:hover::before{opacity:1}
+  .gem-grid .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.12)
+  }
+
+  .badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+    margin-bottom:8px;
+    background:linear-gradient(135deg,var(--accent-gold),#e7c89b);
+    color:#fff;
+  }
+
+  .section-head h2{
+    font-size:28px;
+  }
+
+  .cta-box{
+    background:linear-gradient(135deg,#0b5653,#134f4c);
+    color:#fff;
+    border-radius:24px;
+    padding:48px 24px;
+  }
+  .cta-box .viewall{background:#fff;color:#0b5653}
+  
+  /* gemstone color accents */
+  .gem-gold{border-top:4px solid #d4af37}
+  .gem-garnet{border-top:4px solid #7b1e2b}
+  .gem-pearl{border-top:4px solid #eae6df}
+  .gem-topaz{border-top:4px solid #4fa3d1}
+  .gem-sapphire{border-top:4px solid #1f4fd8}
+  .gem-amethyst{border-top:4px solid #8e44ad}
+  .gem-onyx{border-top:4px solid #111}
+  .gem-tourmaline{border-top:4px solid #2ecc71}
+  .gem-lapis{border-top:4px solid #1a3d7c}
+  .gem-diamond{border-top:4px solid #cfd8dc}
+  .gem-ruby{border-top:4px solid #b11226}
+  .gem-emerald{border-top:4px solid #2e8b57}
+  .gem-silver{border-top:4px solid #bfc3c7}
+  .gem-citrine{border-top:4px solid #f4c430}
+  .gem-opal{border-top:4px solid #ffb7c5}
+  .gem-peridot{border-top:4px solid #9acd32}
+  .gem-turquoise{border-top:4px solid #30d5c8}
+</style>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="logo">
+      <a href="index.html"><img src="img/Benaiah Jewelry Architects 2.png" alt="Benaiah Jewelry"></a>
+    </div>
+
+    <div class="search" role="search">
+      <input type="search" placeholder="Search gemstones or occasions…">
+      <button class="icon-btn">🔍</button>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn">🛒</button>
+      <button class="icon-btn">👤</button>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="stores.html">Store & Products</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="gemstone-guide.html" class="active">Gemstone Guide</a>
+  </nav>
+
+  <!-- PAGE INTRO -->
+<section class="gem-hero">
+  <h1>Gemstone <span>Gift Guide</span></h1>
+  <p class="muted" style="max-width:720px;margin:16px auto;font-size:16px">
+    Celebrate love, milestones, and birthdays with gemstones rich in meaning. Explore traditional wedding anniversary stones and birthstones, curated for timeless gifting.
+  </p>
+</section>
+
+  <!-- ANNIVERSARY GUIDE -->
+  <section class="section">
+    <div class="section-head">
+      <h2><span style="color:var(--accent-deep)">Wedding Anniversary</span> Gemstones</h2>
+    </div>
+
+    <div class="products gem-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      
+      <div class="card"><span class="badge">Anniversary</span><div class="title">1st Anniversary</div><p><strong>Gold</strong></p><p class="muted">Enduring value, foundation of marriage</p></div>
+      <div class="card"><div class="title">2nd Anniversary</div><p><strong>Garnet</strong></p><p class="muted">Protection, deepening commitment</p></div>
+      <div class="card"><div class="title">3rd Anniversary</div><p><strong>Pearl</strong></p><p class="muted">Beauty formed through patience</p></div>
+      <div class="card"><div class="title">4th Anniversary</div><p><strong>Blue Topaz</strong></p><p class="muted">Clarity, communication, trust</p></div>
+      <div class="card"><div class="title">5th Anniversary</div><p><strong>Sapphire</strong></p><p class="muted">Loyalty, wisdom, faithfulness</p></div>
+      <div class="card"><div class="title">6th Anniversary</div><p><strong>Amethyst</strong></p><p class="muted">Peace, balance, sincerity</p></div>
+      <div class="card"><div class="title">7th Anniversary</div><p><strong>Onyx</strong></p><p class="muted">Strength, stability</p></div>
+      <div class="card"><div class="title">8th Anniversary</div><p><strong>Tourmaline</strong></p><p class="muted">Healing, creativity</p></div>
+      <div class="card"><div class="title">9th Anniversary</div><p><strong>Lapis Lazuli</strong></p><p class="muted">Truth, harmony</p></div>
+      <div class="card"><div class="title">10th Anniversary</div><p><strong>Diamond</strong></p><p class="muted">Strength, permanence</p></div>
+      <div class="card"><div class="title">15th Anniversary</div><p><strong>Ruby</strong></p><p class="muted">Deep love, devotion</p></div>
+      <div class="card"><div class="title">20th Anniversary</div><p><strong>Emerald</strong></p><p class="muted">Renewal, lasting love</p></div>
+      <div class="card"><div class="title">25th Anniversary</div><p><strong>Silver</strong></p><p class="muted">Reflection, elegance</p></div>
+      <div class="card"><div class="title">30th Anniversary</div><p><strong>Pearl</strong></p><p class="muted">Rare beauty, maturity</p></div>
+      <div class="card"><div class="title">40th Anniversary</div><p><strong>Ruby</strong></p><p class="muted">Enduring passion</p></div>
+      <div class="card"><div class="title">50th Anniversary</div><p><strong>Gold</strong></p><p class="muted">Lifetime of commitment</p></div>
+      <div class="card"><div class="title">60th Anniversary</div><p><strong>Diamond</strong></p><p class="muted">Eternal love</p></div>
+
+    </div>
+  </section>
+
+  <!-- BIRTHSTONE GUIDE -->
+  <section class="section">
+    <div class="section-head">
+      <h2><span style="color:var(--accent-deep)">Birthstone</span> by Month</h2>
+    </div>
+
+    <div class="products gem-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card"><span class="badge">Birthstone</span><div class="title">January</div><p><strong>Garnet</strong></p><p class="muted">Protection, strength</p></div>
+      <div class="card"><div class="title">February</div><p><strong>Amethyst</strong></p><p class="muted">Peace, clarity</p></div>
+      <div class="card"><div class="title">March</div><p><strong>Aquamarine</strong></p><p class="muted">Calm, courage</p></div>
+      <div class="card"><div class="title">April</div><p><strong>Diamond</strong></p><p class="muted">Purity, strength</p></div>
+      <div class="card"><div class="title">May</div><p><strong>Emerald</strong></p><p class="muted">Love, renewal</p></div>
+      <div class="card"><div class="title">June</div><p><strong>Pearl</strong></p><p class="muted">Elegance, wisdom</p></div>
+      <div class="card"><div class="title">July</div><p><strong>Ruby</strong></p><p class="muted">Passion, vitality</p></div>
+      <div class="card"><div class="title">August</div><p><strong>Peridot</strong></p><p class="muted">Prosperity</p></div>
+      <div class="card"><div class="title">September</div><p><strong>Sapphire</strong></p><p class="muted">Truth, loyalty</p></div>
+      <div class="card"><div class="title">October</div><p><strong>Opal</strong></p><p class="muted">Hope, creativity</p></div>
+      <div class="card"><div class="title">November</div><p><strong>Citrine</strong></p><p class="muted">Joy, abundance</p></div>
+      <div class="card"><div class="title">December</div><p><strong>Turquoise</strong></p><p class="muted">Protection, luck</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+<section class="section center">
+  <div class="cta-box">
+    <h3 style="font-weight:800;font-size:26px">Find a Gemstone That Speaks From the Heart</h3>
+    <p style="opacity:.9">Shop jewelry inspired by love stories, birthdays, and life’s most meaningful moments.</p>
+    <button class="viewall" onclick="location.href='stores.html'">Explore Gemstone Collections</button>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-grid">
+      <div>
+        <h4>About Benaiah Jewelry</h4>
+        <p>Designing meaningful jewelry inspired by tradition, craftsmanship, and modern elegance.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <a href="stores.html">Products</a>
+        <a href="bookings.html">Workshops</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p class="muted">Gateway Mall, Lilongwe</p>
+        <p class="muted">+265 99x xxx xxx</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
